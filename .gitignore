@@ -1,0 +1,15 @@
+draft*
+Draft*
+
+### IntelliJ ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+##
+target/
+test/
