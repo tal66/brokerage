@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brokerage
+  labels:
+    app: brokerage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brokerage
+  template:
+    metadata:
+      labels:
+        app: brokerage
+    spec:
+      containers:
+        - name: brokerage-container
+          image: tal810/brokerage:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

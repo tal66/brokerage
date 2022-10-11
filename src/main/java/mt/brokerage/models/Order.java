@@ -1,11 +1,14 @@
-package app;
+package mt.brokerage.models;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Order {
     public enum Type {
-        BUY, SELL;
+        BUY, SELL
+    }
+    public enum Status {
+        COMPLETED, OPEN, CANCELED, EXPIRED
     }
 
     private static long idCounter = 0;
@@ -14,6 +17,7 @@ public class Order {
     private final double price;
     private final Type type;
     private int quantity;
+    private Status status;
     Order next;
     Order prev;
     // ticker
@@ -41,6 +45,10 @@ public class Order {
         return quantity;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public void setQuantity(int quantity) {
         if (quantity < 0){
             String err = "set negative quantity";
@@ -48,6 +56,10 @@ public class Order {
             throw new RuntimeException(err);
         }
         this.quantity = quantity;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public void decreaseQuantityBy(int quantity) {

@@ -1,20 +1,12 @@
-package app;
+package mt.brokerage.models;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Node {
     private final double limit;
-    Order headOrder;
-    Order tailOrder;
-
-    // later
-//    Node parent;
-//    Node left;
-//    Node right;
-//    boolean red; // false = black
-//    int size;
-
+    private Order headOrder;
+    private Order tailOrder;
 
     public Node(double limit) {
         this.limit = limit;
@@ -32,6 +24,20 @@ public class Node {
         log.debug("added order {}. head= {}", order.getId(), headOrder.getId());
     }
 
+    public Order getHeadOrder() {
+        return headOrder;
+    }
+
+    public void setNextHeadOrder() {
+        if (this.headOrder == null){
+            return;
+        }
+
+        this.headOrder = this.headOrder.next;
+        if (this.headOrder != null){
+            this.headOrder.prev = null;
+        }
+    }
 
     public double getLimit() {
         return limit;
